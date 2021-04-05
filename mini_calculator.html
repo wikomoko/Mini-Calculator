@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Calculator</title>
+    <style>
+        .pad{
+            margin-top: 50px;
+            width: 280px;
+            height: 425px;
+            margin: auto;
+            border-radius: 5px;
+            box-shadow: 0px 0px 3px 5px #EEEEEE;
+            box-sizing: border-box;
+        }
+
+        .monitor{
+            height: 100px;
+            background-color: #FFA5A5;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            padding-top: 38px;
+            box-sizing: border-box;
+            text-align: center;
+            
+        }
+
+        .led{
+            width: 270px;
+            background-color: #FFA5A5;
+            font-size: 42px;
+            border:none;
+            text-align:right;
+         
+        }
+
+        .btnpad{
+            padding-left: 4px;
+        }
+
+        .btnspecial{
+            width: 65px;
+            height: 60px;
+            margin-top: 4px;
+            border:none;
+            background-color: #FFC6A5;
+            color: white;
+            font-size: 30px;
+            box-sizing: border-box;
+        }
+        .btnnumber{
+            width: 65px;
+            height: 60px;
+            margin-top: 4px;
+            border:none;
+            background-color: #FFA5A5;
+            color: white;
+            font-size: 30px;
+            box-sizing: border-box;
+        }
+
+        .btnoperation{
+            width: 65px;
+            height: 60px;
+            margin-top: 4px;
+            border:none;
+            background-color: #9BB6FF;
+            color: white;
+            font-size: 30px;
+            box-sizing: border-box;
+        }
+
+        .n{
+            font-size: 24px!important;
+        }
+        .z{
+            background-color: #FF5E00;
+        }
+        .info{
+            text-align: center;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <p class="info">Press number first, then btn n<sup>2</sup> or ✓ for sqrt</p>
+    <div class="pad">
+        <div class="monitor">
+            <input type="text" name="led" class="led" id="led" disabled>
+        </div>
+
+        <div class="btnpad">
+            <button class="btnspecial " onclick="resetdata()">C</button>
+            <button class="btnspecial n" onclick="sqrtnumber()">✓</button>
+            <button class="btnspecial n" onclick="supernumber()">n <sup>2</sup></button>
+            <button class="btnspecial z" onclick="helpme()">?</button>
+            <br>
+            <button class="btnnumber C" onclick="userinput(7)">7</button>
+            <button class="btnnumber C" onclick="userinput(8)">8</button>
+            <button class="btnnumber C" onclick="userinput(9)">9</button>
+            <button class="btnoperation C" onclick="userinput('*')">x</button>
+            <br>
+            <button class="btnnumber C" onclick="userinput(4)">4</button>
+            <button class="btnnumber C" onclick="userinput(5)">5</button>
+            <button class="btnnumber C" onclick="userinput(6)">6</button>
+            <button class="btnoperation C" onclick="userinput('/')">/</button>
+            <br>
+            <button class="btnnumber C" onclick="userinput(1)">1</button>
+            <button class="btnnumber C" onclick="userinput(2)">2</button>
+            <button class="btnnumber C" onclick="userinput(3)">3</button>
+            <button class="btnoperation C" onclick="userinput('-')">-</button>
+            <br>
+            <button class="btnnumber C" onclick="userinput('.')">,</button>
+            <button class="btnnumber C" onclick="userinput(0)">0</button>
+            <button class="btnspecial C" onclick="showresult()">=</button>
+            <button class="btnoperation C" onclick="userinput('+')">+</button>
+        </div>
+    </div>
+
+
+    <script>
+        var dataholder= "";
+        var datashow="";
+        function userinput(enter)
+        {
+            dataholder+=enter;
+            document.getElementById("led").value=dataholder;
+        }
+
+        function showresult()
+        {
+
+            if(dataholder==null || dataholder =="" || dataholder==" ")
+            {
+               
+                document.getElementById("led").value="insert Number";
+            }
+            else
+            {
+                datashow=eval(dataholder);
+                document.getElementById("led").value=datashow;
+            }
+
+            
+        }
+
+        function resetdata()
+        {
+            dataholder="";
+            datashow="";
+            document.getElementById("led").value=dataholder;
+        }
+
+        function sqrtnumber()
+        {
+            datashow=Math.sqrt(dataholder);
+            document.getElementById("led").value="✓"+dataholder+"="+datashow;
+        }
+
+        function supernumber()
+        {
+            datashow=dataholder*dataholder;
+            document.getElementById("led").value="sqrt is :"+datashow;
+        }
+
+        function helpme()
+        {
+            alert("for using square root '✓'. Press the numbber first then the square root 'n2' or root '✓' ");
+            alert("This app was created by Widi Yatmoko. IG:@wiko.moko");   
+        }
+    </script>
+</body>
+</html>
